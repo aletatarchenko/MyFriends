@@ -79,7 +79,9 @@ extension UsersViewController {
             switch item {
             case let .userData(value):
                 let cell = tableView.dequeueReusableCell(withIdentifier: Constants.userTableViewCell, for: indexPath) as! UserTableViewCell
-                cell.avatarImageView.kf.setImage(with: value.urlForImage!)
+                if let image =  value.urlForImage {
+                    cell.avatarImageView.kf.setImage(with: image)
+                }
                 cell.nameLabel.text = value.fullName
                 return cell
             case .activity:

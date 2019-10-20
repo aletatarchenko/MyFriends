@@ -21,7 +21,9 @@ class UserService {
         user.lastName       = userData.lastName
         user.uuid           = userData.uuid
         user.phoneNumber    = userData.phoneNumber
-        user.image          = try! Data(contentsOf: userData.urlForImage!)
+        if let image        = userData.urlForImage {
+            user.image      = try! Data(contentsOf: image)
+        }
         
         try db.localPersistentContainer.viewContext.save()
         
@@ -41,7 +43,7 @@ class UserService {
     
     func getUsers() throws -> [User] {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "isOldFriend = %@", false)
+        fetchRequest.predicate = NSPredicate(format: "dateToRemove == nil")
         let sortDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         return try db.localPersistentContainer.viewContext.fetch(fetchRequest)
@@ -56,7 +58,7 @@ class UserService {
     }
     
     func markUser(uuid: UUID) throws {
-        try getUser(uuid: uuid)?.isOldFriend = true
+        try getUser(uuid: uuid)?.dateToRemove = Date()
         try db.localPersistentContainer.viewContext.save()
         
     }

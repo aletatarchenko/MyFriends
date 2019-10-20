@@ -32,7 +32,9 @@ class ProfileTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
-        avatarImage.image = UIImage(data: (viewModel?.friendData.image)!)
+        if let image = viewModel?.friendData.image {
+            avatarImage.image = UIImage(data: image)
+        }
         
         avatarImage.rx.anyGesture(.tap())
             .when(.recognized)
@@ -80,7 +82,6 @@ class ProfileTableViewController: UITableViewController {
                 self.dismiss(animated: true)
             })
             .disposed(by: rx.disposeBag)
-        
     }
     
 }
@@ -124,7 +125,6 @@ fileprivate extension UITextField {
         let characterSet = CharacterSet(charactersIn: string)
         return allowedCharacters.isSuperset(of: characterSet)
     }
-    
 }
 
 extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
