@@ -132,7 +132,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Profile" id="SM5-4S-V3e">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="sck-x5-wh5"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="pSw-dw-Pl8"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="pSw-dw-Pl8"/>
                     </navigationItem>
                     <connections>
                         <outlet property="avatarImage" destination="I3c-D8-mfK" id="YU5-Ef-bgV"/>

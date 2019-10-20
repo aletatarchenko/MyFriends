@@ -23,6 +23,7 @@
 		7D4AB8022357B7110003FE70 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4AB8012357B7110003FE70 /* Provider.swift */; };
 		7D81F34B2357D8C000AC67EF /* UsersViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D331DA8235771790044F1CB /* UsersViewController.storyboard */; };
 		7D81F3502357DA7400AC67EF /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D81F34F2357DA7400AC67EF /* UsersViewModel.swift */; };
+		7D8992E2235C5F72004643E0 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8992E1235C5F72004643E0 /* UserService.swift */; };
 		7D9364A5235A19D100938C00 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9364A4235A19D100938C00 /* FriendsViewController.swift */; };
 		7D9364A7235A19DA00938C00 /* FriendsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D9364A6235A19DA00938C00 /* FriendsViewController.storyboard */; };
 		7D9364A9235A1A9700938C00 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9364A8235A1A9700938C00 /* FriendsViewModel.swift */; };
@@ -53,6 +54,7 @@
 		7D4AB7FF2357B38D0003FE70 /* JsonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonData.swift; sourceTree = "<group>"; };
 		7D4AB8012357B7110003FE70 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		7D81F34F2357DA7400AC67EF /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
+		7D8992E1235C5F72004643E0 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		7D9364A4235A19D100938C00 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		7D9364A6235A19DA00938C00 /* FriendsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendsViewController.storyboard; sourceTree = "<group>"; };
 		7D9364A8235A1A9700938C00 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
@@ -151,13 +153,14 @@
 			children = (
 				7D331DA2235771790044F1CB /* AppDelegate.swift */,
 				7D4AB7F92357A3110003FE70 /* Constants.swift */,
+				7D8992E0235C5F61004643E0 /* Service */,
 				7DCDD6AD2358B2E700409C12 /* Managers */,
 				7D81F34E2357DA6600AC67EF /* ViewModel */,
 				7D81F3492357D7B200AC67EF /* ViewControllers */,
 				7D1B64D02357CA880061140E /* View */,
-				7D1B64CF2357CA7A0061140E /* Resources */,
 				7D1B64CD2357CA310061140E /* Model */,
 				7D1B64CC2357CA1D0061140E /* Networking */,
+				7D1B64CF2357CA7A0061140E /* Resources */,
 				7D331DA4235771790044F1CB /* SceneDelegate.swift */,
 				7D331DAB235771790044F1CB /* MyFriends.xcdatamodeld */,
 			);
@@ -191,6 +194,14 @@
 				7D9364B3235B0DD200938C00 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7D8992E0235C5F61004643E0 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				7D8992E1235C5F72004643E0 /* UserService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		7D9364A3235A19B000938C00 /* FriendsViewController */ = {
@@ -351,6 +362,7 @@
 				7D331DA7235771790044F1CB /* UsersViewController.swift in Sources */,
 				7D9364A9235A1A9700938C00 /* FriendsViewModel.swift in Sources */,
 				7D1B64D32357CABC0061140E /* UserTableViewCell.swift in Sources */,
+				7D8992E2235C5F72004643E0 /* UserService.swift in Sources */,
 				7D9364B0235B055C00938C00 /* ProfileTableViewController.swift in Sources */,
 				7D4AB7FE2357A80B0003FE70 /* User.swift in Sources */,
 				7D331DA3235771790044F1CB /* AppDelegate.swift in Sources */,

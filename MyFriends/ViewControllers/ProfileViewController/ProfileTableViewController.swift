@@ -61,6 +61,7 @@ class ProfileTableViewController: UITableViewController {
                 .asObservable()
                 .subscribe(onNext: { [unowned self] in
                     if let item = self.item(for: textField) {
+                        self.doneDidTappedBarButton.isEnabled = true
                         self.viewModel?.updateData(with: item, value: textField.text ?? "")
                     }
                 })
@@ -142,6 +143,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
         guard let data = image?.pngData() else { return }
         viewModel?.updateAvatar(data: data)
         avatarImage.image = image
+        doneDidTappedBarButton.isEnabled = true
         picker.dismiss(animated: true, completion: nil)
     }
 }
