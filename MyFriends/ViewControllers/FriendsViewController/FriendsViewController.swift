@@ -36,8 +36,15 @@ class FriendsViewController: UIViewController {
             })
             .disposed(by: rx.disposeBag)
         
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [unowned self] in
+                self.tableView.deselectRow(at: $0, animated: true)
+            })
+            .disposed(by: rx.disposeBag)
+        
         tableView.rx.modelSelected(UserData.self)
             .subscribe(onNext: { [unowned self] in
+                
                 self.performSegue(withIdentifier: Constants.profileTableViewController, sender: $0)
             })
             .disposed(by: rx.disposeBag)
@@ -49,7 +56,7 @@ class FriendsViewController: UIViewController {
             .disposed(by: rx.disposeBag)
         
         viewModel.friends.bind(to: tableView.rx.items(cellIdentifier: Constants.userTableViewCell)) { (index: Int, model: UserData, cell: UserTableViewCell) in
-            cell.nameLabel.text = "\(model.firstName) \(model.lastName)"
+            cell.nameLabel.text = model.fullName
             guard let image = model.image else { return }
             cell.avatarImageView.image = UIImage(data: image)
         }
@@ -74,7 +81,7 @@ extension FriendsViewController: UITableViewDelegate {
         tableView.setEditing(true, animated: true)
         tableView.register(UINib.init(nibName: Constants.userTableViewCell, bundle: nil),forCellReuseIdentifier: Constants.userTableViewCell)
     }
-        
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let sender = sender as? UserData,
             segue.identifier == Constants.profileTableViewController,

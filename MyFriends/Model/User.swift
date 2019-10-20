@@ -19,7 +19,7 @@ struct UserData: Decodable {
     var urlForImage: URL?
     
     var fullName: String {
-        return "\(firstName) \(lastName) "
+        return "\(firstName) \(lastName)" == " " ? "No name" :  "\(firstName) \(lastName)"
     }
     
     init(user: User) {
@@ -54,7 +54,7 @@ struct UserData: Decodable {
         case uuid 
     }
     
-     init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         
         let container           = try decoder.container(keyedBy: CodingKeys.self)
         email                   = try container.decode(String.self, forKey: .email)
