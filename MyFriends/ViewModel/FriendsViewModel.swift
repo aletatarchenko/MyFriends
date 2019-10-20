@@ -11,20 +11,19 @@ import RxSwift
 import RxCocoa
 import CoreData
 
-
 class FriendsViewModel {
     
     var service = UserService()
     
     private var friendsRelay = BehaviorRelay<[UserData]>(value: [])
     
-    var friends: Observable<[UserData]> {
-        return friendsRelay.asObservable()
+    var driveFriends: Driver<[UserData]> {
+        return friendsRelay.asDriver()
     }
     
     var hasFriends: Observable<Bool> {
         return friendsRelay.map {
-            $0.count > 0
+            !$0.isEmpty
         }
     }
     
@@ -40,19 +39,21 @@ class FriendsViewModel {
     
     func markFriends(uuid: UUID) {
         do {
-           try service.markUser(uuid: uuid)
+            try service.markUser(uuid: uuid)
         } catch {
             print(error)
         }
     }
     
+    let disposeBag = DisposeBag()
+    
     init() {
         getFriends()
-        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
-    }
-    
-    @objc func contextObjectsDidChange(_ notification: Notification) {
-        getFriends()
+        NotificationCenter.default.rx.notification(.NSManagedObjectContextObjectsDidChange)
+            .subscribe(onNext: { (notificaion) in
+                self.getFriends()
+            })
+            .disposed(by: disposeBag)
     }
 }
 

@@ -35,7 +35,7 @@ class ProfileTableViewController: UITableViewController {
         avatarImage.image = UIImage(data: (viewModel?.friendData.image)!)
         
         avatarImage.rx.anyGesture(.tap())
-            .skip(1)
+            .when(.recognized)
             .subscribe(onNext: { [unowned self] _ in
                 let vc = UIImagePickerController()
                 vc.delegate = self
@@ -81,16 +81,6 @@ class ProfileTableViewController: UITableViewController {
             })
             .disposed(by: rx.disposeBag)
         
-    }
-    
-    // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
     }
     
 }

@@ -55,7 +55,8 @@ class FriendsViewController: UIViewController {
             })
             .disposed(by: rx.disposeBag)
         
-        viewModel.friends.bind(to: tableView.rx.items(cellIdentifier: Constants.userTableViewCell)) { (index: Int, model: UserData, cell: UserTableViewCell) in
+   
+         viewModel.driveFriends.drive(tableView.rx.items(cellIdentifier: Constants.userTableViewCell)) { (index: Int, model: UserData, cell: UserTableViewCell) in
             cell.nameLabel.text = model.fullName
             guard let image = model.image else { return }
             cell.avatarImageView.image = UIImage(data: image)

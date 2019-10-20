@@ -9,6 +9,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import RxDataSources
 import Moya
 
 class UsersViewModel {
@@ -16,20 +17,14 @@ class UsersViewModel {
     var disposeBag = DisposeBag()
     var service = UserService()
     
-    private var usersRelay = BehaviorRelay<[UserData]>(value: [])
+    private var usersRelay = BehaviorRelay<[UserSection]>(value: [])
     
-    var users: Observable<[UserData]> {
-        return usersRelay.asObservable()
+    var driveUsers: Driver<[UserSection]> {
+        return usersRelay.asDriver()
     }
     
-    var countUsers: Int  {
+    var users: Int  {
         return usersRelay.value.count
-    }
-    
-    private var isDownloadRelay = BehaviorRelay<Bool>(value: false)
-    
-    var isDownload: Bool {
-        return isDownloadRelay.value
     }
     
     private var networkConnectionErrorRelay = PublishRelay<Error>()
@@ -43,13 +38,11 @@ class UsersViewModel {
     
     func getUsers(count: Int = 50) {
         
-        isDownloadRelay.accept(true)
         disposeBag = DisposeBag()
         
         Service.getUsers(count: count)
             .asObservable()
             .do(onError: {
-                self.isDownloadRelay.accept(false)
                 if case let MoyaError.underlying(mError, _) = $0,
                     (mError as NSError).code == NSURLErrorNotConnectedToInternet {
                     self.networkConnectionErrorRelay.accept($0)
@@ -57,11 +50,12 @@ class UsersViewModel {
             })
             .catchErrorJustReturn([])
             .subscribe(onNext: {
-                self.usersRelay.accept(self.usersRelay.value + $0)
-            },  onCompleted: {
-                self.isDownloadRelay.accept(false)
-            }, onDisposed: {
-                self.isDownloadRelay.accept(false)
+                let items = Array((self.usersRelay.value.first?.items ?? [])
+                    .dropLast())
+                    + $0.map { .userData($0) }
+                    + [.activity]
+                    
+                self.usersRelay.accept([UserSection(items: items)])
             })
             .disposed(by: disposeBag)
     }
@@ -73,4 +67,26 @@ class UsersViewModel {
             print(error)
         }
     }
+}
+
+
+struct UserSection: SectionModelType {
+    
+    typealias Item = UsersItem
+    var title: String?
+    var items: [Item]
+    
+    init(original: UserSection, items: [UsersItem]) {
+        self = original
+        self.items = items
+    }
+    init(items: [UsersItem]) {
+        self.items = items
+    }
+}
+
+enum UsersItem {
+    
+    case userData(UserData)
+    case activity
 }

@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-@_exported import NSObject_Rx
 
 
 @UIApplicationMain
