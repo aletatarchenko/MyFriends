@@ -1,0 +1,62 @@
+PODS:
+  - Alamofire (4.9.0)
+  - Differentiator (3.1.0)
+  - Kingfisher (5.8.3):
+    - Kingfisher/Core (= 5.8.3)
+  - Kingfisher/Core (5.8.3)
+  - Moya/Core (12.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.0)
+  - Moya/RxSwift (12.0.1):
+    - Moya/Core
+    - RxSwift (~> 4.0)
+  - "NSObject+Rx (4.4.1)":
+    - RxSwift (~> 4.3)
+  - Result (4.1.0)
+  - RxCocoa (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxGesture (2.2.0):
+    - RxCocoa (~> 4.5)
+    - RxSwift (~> 4.5)
+  - RxSwift (4.5.0)
+
+DEPENDENCIES:
+  - Kingfisher
+  - Moya/RxSwift (~> 12.0)
+  - "NSObject+Rx"
+  - RxCocoa
+  - RxDataSources
+  - RxGesture
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Differentiator
+    - Kingfisher
+    - Moya
+    - "NSObject+Rx"
+    - Result
+    - RxCocoa
+    - RxDataSources
+    - RxGesture
+    - RxSwift
+
+SPEC CHECKSUMS:
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  Kingfisher: b7e4cb65ff24c264bd2a1284b75b974d907afd94
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
+  "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
+  RxGesture: c1b7bf17166b0ef9d642a9510f8bac5785f18990
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+
+PODFILE CHECKSUM: d1a1e5f391b00571fab3d6b2bfcca2f101a777b2
+
+COCOAPODS: 1.8.3

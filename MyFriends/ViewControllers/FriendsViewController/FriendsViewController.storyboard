@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zAo-Ii-hAG">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Friends-->
+        <scene sceneID="atM-oe-vLp">
+            <objects>
+                <viewController id="R69-AW-GFr" customClass="FriendsViewController" customModule="MyFriends" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lEE-Ia-0fq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MJx-T7-Gu3">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gve-3B-RH3">
+                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ymy-Dt-rTa" firstAttribute="trailing" secondItem="MJx-T7-Gu3" secondAttribute="trailing" id="5sX-iG-xDw"/>
+                            <constraint firstItem="gve-3B-RH3" firstAttribute="centerY" secondItem="MJx-T7-Gu3" secondAttribute="centerY" id="WZm-jT-5Ly"/>
+                            <constraint firstAttribute="bottom" secondItem="MJx-T7-Gu3" secondAttribute="bottom" id="XQB-CQ-Ckd"/>
+                            <constraint firstItem="MJx-T7-Gu3" firstAttribute="leading" secondItem="ymy-Dt-rTa" secondAttribute="leading" id="cin-wB-XiC"/>
+                            <constraint firstItem="MJx-T7-Gu3" firstAttribute="top" secondItem="lEE-Ia-0fq" secondAttribute="top" id="jZR-cP-owA"/>
+                            <constraint firstItem="gve-3B-RH3" firstAttribute="centerX" secondItem="MJx-T7-Gu3" secondAttribute="centerX" id="pTU-4v-iuf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ymy-Dt-rTa"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Friends" id="dUB-0v-vbk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wPL-4r-w7g"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="noFriendsListLabel" destination="gve-3B-RH3" id="pat-Dr-aT8"/>
+                        <outlet property="showUsersListBarButtonItem" destination="wPL-4r-w7g" id="zfJ-oK-Aj0"/>
+                        <outlet property="tableView" destination="MJx-T7-Gu3" id="mnI-aw-gEj"/>
+                        <segue destination="Dfw-Fr-e16" kind="show" identifier="UsersViewController" id="SmN-49-lEi"/>
+                        <segue destination="7RL-T6-jLd" kind="show" identifier="ProfileTableViewController" id="VhJ-LE-2kw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ga-y8-aaH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="550.72463768115949" y="-41.517857142857139"/>
+        </scene>
+        <!--ProfileTableViewController-->
+        <scene sceneID="kMY-Y2-Mle">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProfileTableViewController" id="7RL-T6-jLd" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="uCF-0G-xSy"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kge-pg-UPN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1269" y="188"/>
+        </scene>
+        <!--UsersViewController-->
+        <scene sceneID="sCD-7o-kzY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UsersViewController" id="Dfw-Fr-e16" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="vHi-gU-6X8"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uLS-dw-60z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1244" y="-316"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oge-dB-nrZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zAo-Ii-hAG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="MdA-2h-xdR">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="R69-AW-GFr" kind="relationship" relationship="rootViewController" id="gh5-w6-YTS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O3S-PK-waZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-359.4202898550725" y="-41.517857142857139"/>
+        </scene>
+    </scenes>
+</document>
