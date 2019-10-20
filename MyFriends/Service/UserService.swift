@@ -42,7 +42,8 @@ class UserService {
     func getUsers() throws -> [User] {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "isOldFriend = %@", false)
-        
+        let sortDescriptor = NSSortDescriptor(key: "firstName", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         return try db.localPersistentContainer.viewContext.fetch(fetchRequest)
     }
     
