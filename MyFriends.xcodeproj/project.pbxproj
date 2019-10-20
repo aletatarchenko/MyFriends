@@ -26,6 +26,7 @@
 		7D8992E2235C5F72004643E0 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8992E1235C5F72004643E0 /* UserService.swift */; };
 		7D8992E5235CC8B0004643E0 /* ActivitiIndicatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8992E3235CC8B0004643E0 /* ActivitiIndicatorTableViewCell.swift */; };
 		7D8992E6235CC8B0004643E0 /* ActivitiIndicatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D8992E4235CC8B0004643E0 /* ActivitiIndicatorTableViewCell.xib */; };
+		7D8992E9235CD722004643E0 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8992E8235CD722004643E0 /* UIViewController+Extensions.swift */; };
 		7D9364A5235A19D100938C00 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9364A4235A19D100938C00 /* FriendsViewController.swift */; };
 		7D9364A7235A19DA00938C00 /* FriendsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D9364A6235A19DA00938C00 /* FriendsViewController.storyboard */; };
 		7D9364A9235A1A9700938C00 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9364A8235A1A9700938C00 /* FriendsViewModel.swift */; };
@@ -59,6 +60,7 @@
 		7D8992E1235C5F72004643E0 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		7D8992E3235CC8B0004643E0 /* ActivitiIndicatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiIndicatorTableViewCell.swift; sourceTree = "<group>"; };
 		7D8992E4235CC8B0004643E0 /* ActivitiIndicatorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivitiIndicatorTableViewCell.xib; sourceTree = "<group>"; };
+		7D8992E8235CD722004643E0 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		7D9364A4235A19D100938C00 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		7D9364A6235A19DA00938C00 /* FriendsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendsViewController.storyboard; sourceTree = "<group>"; };
 		7D9364A8235A1A9700938C00 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		7D331DA1235771790044F1CB /* MyFriends */ = {
 			isa = PBXGroup;
 			children = (
+				7D8992E7235CD6DD004643E0 /* Extension */,
 				7D331DA2235771790044F1CB /* AppDelegate.swift */,
 				7D4AB7F92357A3110003FE70 /* Constants.swift */,
 				7D8992E0235C5F61004643E0 /* Service */,
@@ -208,6 +211,14 @@
 				7D8992E1235C5F72004643E0 /* UserService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		7D8992E7235CD6DD004643E0 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7D8992E8235CD722004643E0 /* UIViewController+Extensions.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		7D9364A3235A19B000938C00 /* FriendsViewController */ = {
@@ -369,6 +380,7 @@
 				7D331DA7235771790044F1CB /* UsersViewController.swift in Sources */,
 				7D9364A9235A1A9700938C00 /* FriendsViewModel.swift in Sources */,
 				7D1B64D32357CABC0061140E /* UserTableViewCell.swift in Sources */,
+				7D8992E9235CD722004643E0 /* UIViewController+Extensions.swift in Sources */,
 				7D8992E2235C5F72004643E0 /* UserService.swift in Sources */,
 				7D9364B0235B055C00938C00 /* ProfileTableViewController.swift in Sources */,
 				7D8992E5235CC8B0004643E0 /* ActivitiIndicatorTableViewCell.swift in Sources */,

@@ -12,4 +12,5 @@ target 'MyFriends' do
    pod 'Kingfisher'
    pod 'RxDataSources'
    pod "RxGesture"
+   pod 'RxReachability'
 end

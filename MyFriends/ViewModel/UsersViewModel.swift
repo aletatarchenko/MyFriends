@@ -11,12 +11,14 @@ import RxCocoa
 import RxSwift
 import RxDataSources
 import Moya
+import Reachability
+import RxReachability
 
 class UsersViewModel {
     
     var disposeBag = DisposeBag()
     var service = UserService()
-    
+    var reachability = Reachability()
     private var usersRelay = BehaviorRelay<[UserSection]>(value: [])
     
     var driveUsers: Driver<[UserSection]> {
@@ -27,11 +29,12 @@ class UsersViewModel {
         return usersRelay.value.count
     }
     
-    private var networkConnectionErrorRelay = PublishRelay<Error>()
+    private var isLoading = BehaviorRelay<Bool>(value: true)
     
-    var networkConnectionError: Observable<Error> {
-        return networkConnectionErrorRelay.asObservable()
+    var driveIsLoading: Driver<Bool> {
+        return isLoading.asDriver()
     }
+    
     init() {
         getUsers()
     }
@@ -42,20 +45,17 @@ class UsersViewModel {
         
         Service.getUsers(count: count)
             .asObservable()
-            .do(onError: {
-                if case let MoyaError.underlying(mError, _) = $0,
-                    (mError as NSError).code == NSURLErrorNotConnectedToInternet {
-                    self.networkConnectionErrorRelay.accept($0)
-                }
+            .do(onError: { _ in
+                self.isLoading.accept(true)
             })
-            .catchErrorJustReturn([])
             .subscribe(onNext: {
                 let items = Array((self.usersRelay.value.first?.items ?? [])
                     .dropLast())
                     + $0.map { .userData($0) }
                     + [.activity]
-                    
+                
                 self.usersRelay.accept([UserSection(items: items)])
+                self.isLoading.accept(false)
             })
             .disposed(by: disposeBag)
     }

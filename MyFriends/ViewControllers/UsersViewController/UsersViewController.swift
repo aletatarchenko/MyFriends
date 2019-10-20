@@ -16,7 +16,7 @@ import RxDataSources
 class UsersViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var activitiIndicator: UIActivityIndicatorView!
     @IBAction func didTapCancel(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
@@ -29,11 +29,19 @@ class UsersViewController: UIViewController {
         static var countForGetUsers  = 50
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTableView()
         configureTableViewCell()
+        
+        viewModel.driveIsLoading
+            .asObservable()
+            .take(2)
+            .map { !$0 }
+            .bind(to: activitiIndicator.rx.isHidden)
+            .disposed(by: rx.disposeBag)
         
         tableView.rx.modelSelected(UsersItem.self)
             .subscribe(onNext: { [unowned self] in
@@ -59,11 +67,6 @@ class UsersViewController: UIViewController {
             })
             .disposed(by: rx.disposeBag)
         
-        viewModel.networkConnectionError
-            .asObservable()
-            .subscribe(onNext: { [unowned self] _ in
-                self.showNoInternetConnectionAlert() })
-            .disposed(by: rx.disposeBag)
     }
 }
 
@@ -93,12 +96,6 @@ extension UsersViewController {
                            forCellReuseIdentifier: Constants.userTableViewCell)
         tableView.register(UINib.init(nibName: Constants.activitiIndicatorTableViewCell, bundle: nil),
                            forCellReuseIdentifier: Constants.activitiIndicatorTableViewCell)
-    }
-    
-    func showNoInternetConnectionAlert() {
-        let alert = UIAlertController(title: "", message: "No internet connection", preferredStyle: .alert)
-        alert.addAction(.init(title: "Ok", style: .default))
-        self.present(alert, animated: true)
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {

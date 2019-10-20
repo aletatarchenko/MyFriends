@@ -19,11 +19,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="XZ0-aH-vkj">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="XZ0-aH-vkj" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2He-21-kzF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hYD-Ck-Iab" secondAttribute="trailing" id="6WK-3t-Mwv"/>
                             <constraint firstItem="hYD-Ck-Iab" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ANn-LK-cpy"/>
+                            <constraint firstItem="XZ0-aH-vkj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RH5-PP-46M"/>
                             <constraint firstAttribute="bottom" secondItem="hYD-Ck-Iab" secondAttribute="bottom" id="SRq-k6-XkK"/>
                             <constraint firstItem="hYD-Ck-Iab" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hZW-5K-lxz"/>
                         </constraints>
@@ -37,6 +42,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activitiIndicator" destination="XZ0-aH-vkj" id="Quc-pb-khL"/>
                         <outlet property="tableView" destination="hYD-Ck-Iab" id="BRi-W9-O6N"/>
                     </connections>
                 </viewController>

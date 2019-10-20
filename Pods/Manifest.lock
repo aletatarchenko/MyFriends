@@ -12,6 +12,7 @@ PODS:
     - RxSwift (~> 4.0)
   - "NSObject+Rx (4.4.1)":
     - RxSwift (~> 4.3)
+  - ReachabilitySwift (4.3.1)
   - Result (4.1.0)
   - RxCocoa (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
@@ -22,6 +23,10 @@ PODS:
   - RxGesture (2.2.0):
     - RxCocoa (~> 4.5)
     - RxSwift (~> 4.5)
+  - RxReachability (0.1.8):
+    - ReachabilitySwift (~> 4.3.0)
+    - RxCocoa (~> 4)
+    - RxSwift (~> 4)
   - RxSwift (4.5.0)
 
 DEPENDENCIES:
@@ -31,6 +36,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxDataSources
   - RxGesture
+  - RxReachability
 
 SPEC REPOS:
   trunk:
@@ -39,10 +45,12 @@ SPEC REPOS:
     - Kingfisher
     - Moya
     - "NSObject+Rx"
+    - ReachabilitySwift
     - Result
     - RxCocoa
     - RxDataSources
     - RxGesture
+    - RxReachability
     - RxSwift
 
 SPEC CHECKSUMS:
@@ -51,12 +59,14 @@ SPEC CHECKSUMS:
   Kingfisher: b7e4cb65ff24c264bd2a1284b75b974d907afd94
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxGesture: c1b7bf17166b0ef9d642a9510f8bac5785f18990
+  RxReachability: 053f2d913db44998242ade488ccaef558f3ce7cb
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
 
-PODFILE CHECKSUM: d1a1e5f391b00571fab3d6b2bfcca2f101a777b2
+PODFILE CHECKSUM: 0ea1f0f9d0ad055a66948235526f4e467029330b
 
 COCOAPODS: 1.8.3
