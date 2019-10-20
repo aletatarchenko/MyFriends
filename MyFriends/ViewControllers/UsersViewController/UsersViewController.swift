@@ -25,14 +25,14 @@ class UsersViewController: UIViewController {
         static var userTableViewCell = "UserTableViewCell"
         static var countForGetUsers  = 50
     }
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTableView()
         
         tableView.rx.modelSelected(UserData.self)
-            .subscribe(onNext: {
+            .subscribe(onNext: { [unowned self] in
                 self.viewModel.saveUser(user: $0)
                 self.dismiss(animated: true)
             })
@@ -45,16 +45,19 @@ class UsersViewController: UIViewController {
         .disposed(by: rx.disposeBag)
         
         tableView.rx.willDisplayCell
-            .filter { $0.indexPath.row > self.viewModel.countUsers - 25 }
-            .filter{ _ in !self.viewModel.isDownload }
-            .subscribe(onNext: { _ in
+            .filter { [unowned self] in
+                $0.indexPath.row > (self.viewModel.countUsers) - 25 }
+            .filter{ [unowned self] _ in
+                !self.viewModel.isDownload }
+            .subscribe(onNext: { [unowned self] _ in
                 self.viewModel.getUsers(count: Constants.countForGetUsers)
             })
             .disposed(by: rx.disposeBag)
         
         viewModel.networkConnectionError
             .asObservable()
-            .subscribe(onNext: { _ in self.showNoInternetConnectionAlert() })
+            .subscribe(onNext: { [unowned self] _ in
+                self.showNoInternetConnectionAlert() })
             .disposed(by: rx.disposeBag)
     }
 }

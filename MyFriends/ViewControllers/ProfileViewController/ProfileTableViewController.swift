@@ -36,7 +36,7 @@ class ProfileTableViewController: UITableViewController {
         
         avatarImage.rx.anyGesture(.tap())
             .skip(1)
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [unowned self] _ in
                 let vc = UIImagePickerController()
                 vc.delegate = self
                 self.show(vc, sender: nil)
@@ -69,13 +69,13 @@ class ProfileTableViewController: UITableViewController {
         }
         
         cancelDidTappedBarButton.rx.tap
-            .subscribe(onNext: {
+            .subscribe(onNext: { [unowned self] _ in
                 self.dismiss(animated: true)
             })
             .disposed(by: rx.disposeBag)
         
         doneDidTappedBarButton.rx.tap
-            .subscribe(onNext: {
+            .subscribe(onNext: {  [unowned self] _ in
                 self.viewModel?.updateFriend()
                 self.dismiss(animated: true)
             })

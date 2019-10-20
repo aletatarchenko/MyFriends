@@ -31,19 +31,19 @@ class FriendsViewController: UIViewController {
         configureTableView()
         
         showUsersListBarButtonItem.rx.tap
-            .subscribe(onNext: {
+            .subscribe(onNext: { [unowned self] _ in
                 self.performSegue(withIdentifier: Constants.usersViewController, sender: nil)
             })
             .disposed(by: rx.disposeBag)
         
         tableView.rx.modelSelected(UserData.self)
-            .subscribe(onNext: {
+            .subscribe(onNext: { [unowned self] in
                 self.performSegue(withIdentifier: Constants.profileTableViewController, sender: $0)
             })
             .disposed(by: rx.disposeBag)
         
         tableView.rx.modelDeleted(UserData.self)
-            .subscribe(onNext: {
+            .subscribe(onNext: { [unowned self]  in
                 self.viewModel.markFriends(uuid: $0.uuid)
             })
             .disposed(by: rx.disposeBag)
