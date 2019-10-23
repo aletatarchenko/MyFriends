@@ -17,9 +17,7 @@ class UsersViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activitiIndicator: UIActivityIndicatorView!
-    @IBAction func didTapCancel(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true)
-    }
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     var dataSource: RxTableViewSectionedReloadDataSource<UserSection>!
     let viewModel = UsersViewModel()
     
@@ -35,6 +33,12 @@ class UsersViewController: UIViewController {
         
         configureTableView()
         configureTableViewCell()
+        
+        cancelButton.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                self.dismiss(animated: true)
+            })
+            .disposed(by: rx.disposeBag)
         
         viewModel.driveIsLoading
             .asObservable()
