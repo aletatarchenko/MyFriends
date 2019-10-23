@@ -59,8 +59,7 @@ class FriendsViewController: UIViewController {
    
          viewModel.driveFriends.drive(tableView.rx.items(cellIdentifier: Constants.userTableViewCell)) { (index: Int, model: UserData, cell: UserTableViewCell) in
             cell.nameLabel.text = model.fullName
-            guard let image = model.image else { return }
-            cell.avatarImageView.image = UIImage(data: image)
+            cell.avatarImageView.kf.setImage(with: model.imageUrl)
         }
         .disposed(by: rx.disposeBag)
         

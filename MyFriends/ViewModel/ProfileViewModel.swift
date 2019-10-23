@@ -26,8 +26,8 @@ class ProfileViewModel {
         catch { print(error) }
     }
     
-    func updateAvatar(data: Data) {
-        friendData.image = data
+    func updateAvatar(url: URL) {
+        friendData.imageUrl = url
     }
     
     func updateData(with type: FriendTextItemType, value: String) {

@@ -26,24 +26,14 @@ class ProfileTableViewController: UITableViewController {
         }
     }
     
-    var viewModel: ProfileViewModel?
+    var viewModel: ProfileViewModel!
     var textFields = [UITextField]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
-        if let image = viewModel?.friendData.image {
-            avatarImage.image = UIImage(data: image)
-        }
         
-        avatarImage.rx.anyGesture(.tap())
-            .when(.recognized)
-            .subscribe(onNext: { [unowned self] _ in
-                let vc = UIImagePickerController()
-                vc.delegate = self
-                self.show(vc, sender: nil)
-            })
-            .disposed(by: rx.disposeBag)
+        avatarImage.kf.setImage(with: viewModel?.friendData.imageUrl )
         
         textFields = [
             firstNameTextField,
@@ -51,7 +41,7 @@ class ProfileTableViewController: UITableViewController {
             mailTextField,
             phoneNumberTextField
         ]
-                
+        
         textFields.forEach { (textField) in
             textField.delegate = self
             
@@ -101,9 +91,9 @@ extension ProfileTableViewController: UITextFieldDelegate  {
     }
     
     func item(for textField: UITextField) -> FriendTextItemType? {
-           
-           return textField.itemType
-       }
+        
+        return textField.itemType
+    }
 }
 
 
@@ -124,16 +114,5 @@ fileprivate extension UITextField {
         let allowedCharacters = CharacterSet.letters
         let characterSet = CharacterSet(charactersIn: string)
         return allowedCharacters.isSuperset(of: characterSet)
-    }
-}
-
-extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        guard let data = image?.pngData() else { return }
-        viewModel?.updateAvatar(data: data)
-        avatarImage.image = image
-        doneDidTappedBarButton.isEnabled = true
-        picker.dismiss(animated: true, completion: nil)
     }
 }

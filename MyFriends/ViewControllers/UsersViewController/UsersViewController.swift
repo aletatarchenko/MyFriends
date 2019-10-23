@@ -38,12 +38,12 @@ class UsersViewController: UIViewController {
         
         viewModel.driveIsLoading
             .asObservable()
-            .take(2)
             .map { !$0 }
             .bind(to: activitiIndicator.rx.isHidden)
             .disposed(by: rx.disposeBag)
         
         tableView.rx.modelSelected(UsersItem.self)
+            .take(1)
             .subscribe(onNext: { [unowned self] in
                 switch $0 {
                 case let .userData(value):
@@ -79,11 +79,10 @@ extension UsersViewController {
             switch item {
             case let .userData(value):
                 let cell = tableView.dequeueReusableCell(withIdentifier: Constants.userTableViewCell, for: indexPath) as! UserTableViewCell
-                if let image =  value.urlForImage {
-                    cell.avatarImageView.kf.setImage(with: image)
-                }
+                cell.avatarImageView.kf.setImage(with: value.imageUrl)
                 cell.nameLabel.text = value.fullName
                 return cell
+                
             case .activity:
                 let cell = tableView.dequeueReusableCell(withIdentifier: Constants.activitiIndicatorTableViewCell, for: indexPath) as! ActivitiIndicatorTableViewCell
                 cell.activitiIndicator.startAnimating()

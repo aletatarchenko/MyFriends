@@ -15,8 +15,7 @@ struct UserData: Decodable {
     var lastName: String
     var email: String
     var phoneNumber: String
-    var image: Data?
-    var urlForImage: URL?
+    var imageUrl: URL?
     
     var fullName: String {
         return "\(firstName) \(lastName)" == " " ? "No name" :  "\(firstName) \(lastName)"
@@ -28,8 +27,7 @@ struct UserData: Decodable {
         lastName        = user.lastName ?? ""
         email           = user.email ?? ""
         phoneNumber     = user.phoneNumber ?? ""
-        image           = user.image
-        urlForImage     = user.imageForServer
+        imageUrl        = user.imageUrl
     }
     
     
@@ -47,7 +45,7 @@ struct UserData: Decodable {
     }
     
     enum PictureCodingKeys: String, CodingKey {
-        case urlForImage = "medium"
+        case imageUrl = "medium"
     }
     
     enum LoginCodingKeys: String, CodingKey {
@@ -65,7 +63,7 @@ struct UserData: Decodable {
         lastName                = try nameContainer.decode(String.self, forKey: .lastName)
         
         let pictureContainer    = try container.nestedContainer(keyedBy: PictureCodingKeys.self, forKey: .picture)
-        urlForImage             = try pictureContainer.decode(URL.self, forKey: .urlForImage)
+        imageUrl                = try pictureContainer.decode(URL.self, forKey: .imageUrl)
         
         let loginContainer      = try container.nestedContainer(keyedBy: LoginCodingKeys.self, forKey: .login)
         uuid                    = UUID(uuidString: try loginContainer.decode(String.self, forKey: .uuid))!

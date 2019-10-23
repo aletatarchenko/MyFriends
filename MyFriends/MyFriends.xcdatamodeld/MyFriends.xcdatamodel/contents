@@ -4,13 +4,12 @@
         <attribute name="dateToRemove" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="firstName" optional="YES" attributeType="String"/>
-        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
-        <attribute name="imageForServer" optional="YES" attributeType="URI"/>
+        <attribute name="imageUrl" optional="YES" attributeType="URI"/>
         <attribute name="lastName" optional="YES" attributeType="String"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="User" positionX="-45" positionY="0" width="128" height="163"/>
+        <element name="User" positionX="-45" positionY="0" width="128" height="148"/>
     </elements>
 </model>

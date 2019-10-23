@@ -45,17 +45,18 @@ class UsersViewModel {
         
         Service.getUsers(count: count)
             .asObservable()
-            .do(onError: { _ in
-                self.isLoading.accept(true)
-            })
-            .subscribe(onNext: {
-                let items = Array((self.usersRelay.value.first?.items ?? [])
-                    .dropLast())
-                    + $0.map { .userData($0) }
-                    + [.activity]
-                
-                self.usersRelay.accept([UserSection(items: items)])
-                self.isLoading.accept(false)
+            .subscribe(
+                onNext: {
+                    let items = Array((self.usersRelay.value.first?.items ?? [])
+                        .dropLast())
+                        + $0.map { .userData($0) }
+                        + [.activity]
+                    
+                    self.usersRelay.accept([UserSection(items: items)])
+                    self.isLoading.accept(false)
+            },
+                onError: { _ in
+                    self.isLoading.accept(false)
             })
             .disposed(by: disposeBag)
     }

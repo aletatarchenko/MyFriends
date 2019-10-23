@@ -21,9 +21,7 @@ class UserService {
         user.lastName       = userData.lastName
         user.uuid           = userData.uuid
         user.phoneNumber    = userData.phoneNumber
-        if let image        = userData.urlForImage {
-            user.image      = try! Data(contentsOf: image)
-        }
+        user.imageUrl       = userData.imageUrl
         
         try db.localPersistentContainer.viewContext.save()
         
@@ -31,12 +29,12 @@ class UserService {
     
     func updateUser(userData: UserData) throws {
         let user = try! getUser(uuid: userData.uuid)
-        user?.setValue(userData.email, forKey: "email")
-        user?.setValue(userData.firstName, forKey: "firstName")
-        user?.setValue(userData.lastName, forKey: "lastName")
-        user?.setValue(userData.phoneNumber, forKey: "phoneNumber")
-        user?.setValue(userData.image, forKey: "image")
-        
+        user?.email         = userData.email
+        user?.firstName     = userData.firstName
+        user?.lastName      = userData.lastName
+        user?.phoneNumber   = userData.phoneNumber
+        user?.imageUrl      = userData.imageUrl
+
         try db.localPersistentContainer.viewContext.save()
         
     }
